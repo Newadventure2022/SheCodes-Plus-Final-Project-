@@ -22,6 +22,7 @@ function formatDate(timestamp) {
 }
 
 function displayWeatherCondition(response) {
+  console.log(response);
   let currentTemp = document.querySelector("#temperature");
   let currentLocation = document.querySelector("#current-city");
   let temperature = Math.round(response.data.temperature.current);
