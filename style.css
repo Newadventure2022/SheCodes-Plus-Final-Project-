@@ -215,18 +215,24 @@ input[type="submit"]:hover {
 .weather {
   text-transform: capitalize;
 }
-span.emoji1 {
-  font-size: 100px;
-  vertical-align: middle;
-}
 
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #eee;
+}
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.5;
+}
+.weather-forecast-temperature-low {
+  opacity: 0.5;
+}
+.weather-forecast-temperature {
+  font-size: 15px;
+}
 span.elements {
   display: block;
-}
-
-span.emoji2 {
-  font-size: 50px;
-  text-align: center;
 }
 
 .next5 {
