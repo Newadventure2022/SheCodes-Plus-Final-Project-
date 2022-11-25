@@ -25,7 +25,15 @@ function dispalyForecast() {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -48,7 +56,6 @@ function dispalyForecast() {
 }
 
 function displayWeatherCondition(response) {
-  console.log(response.data);
   let currentTemp = document.querySelector("#temperature");
   let currentLocation = document.querySelector("#current-city");
   let temperature = Math.round(response.data.temperature.current);
