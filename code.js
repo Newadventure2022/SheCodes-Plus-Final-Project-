@@ -21,6 +21,32 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function dispalyForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` 
+                        <div class="col-2">
+                            <div class="weather-forecast-date">${day}</div>
+                            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+                                alt="" />
+                            <div class="weather-forecast-temperature">
+                                <span class="weather-forecast-temperature-high"> 12° </span>
+                                <span class="weather-forecast-temperature-low"> 5° </span>
+                            </div> 
+                        </div>  
+                         
+              
+                `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeatherCondition(response) {
   console.log(response.data);
   let currentTemp = document.querySelector("#temperature");
@@ -136,3 +162,4 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleCity);
 
 search("Paris");
+dispalyForecast();
