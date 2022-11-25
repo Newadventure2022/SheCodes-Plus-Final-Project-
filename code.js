@@ -21,7 +21,8 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function dispalyForecast() {
+function dispalyForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -53,6 +54,12 @@ function dispalyForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  let apiKey = "o8145f06881d09401ad03t8b0f09e589";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(dispalyForecast);
 }
 
 function displayWeatherCondition(response) {
@@ -129,6 +136,8 @@ function showTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  getForecast(response.data.coordinates);
 }
 function search(city) {
   let apiKey = "o8145f06881d09401ad03t8b0f09e589";
@@ -169,4 +178,3 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleCity);
 
 search("Paris");
-dispalyForecast();
