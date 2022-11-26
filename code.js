@@ -21,11 +21,9 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function dispalyForecast(response) {
-  console.log(response.data.daily);
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -35,22 +33,44 @@ function dispalyForecast(response) {
     "Friday",
     "Saturday",
   ];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` 
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        ` 
                         <div class="col-2">
-                            <div class="weather-forecast-date">${day}</div>
-                            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+                            <div class="weather-forecast-date">${formatDay(
+                              forecastDay.time
+                            )}</div>
+                            
+                            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                              forecastDay.condition.icon
+                            }.png"
                                 alt="" />
                             <div class="weather-forecast-temperature">
-                                <span class="weather-forecast-temperature-high"> 12° </span>
-                                <span class="weather-forecast-temperature-low"> 5° </span>
+                                <span class="weather-forecast-temperature-high"> ${Math.round(
+                                  forecastDay.temperature.maximum
+                                )}° </span>
+                                <span class="weather-forecast-temperature-low"> ${Math.round(
+                                  forecastDay.temperature.minimum
+                                )}° </span>
                             </div> 
                         </div>  
                          
               
                 `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -59,7 +79,7 @@ function getForecast(coordinates) {
   let apiKey = "o8145f06881d09401ad03t8b0f09e589";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(dispalyForecast);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeatherCondition(response) {
