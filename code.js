@@ -103,6 +103,8 @@ function displayWeatherCondition(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+  getForecast(response.data.coordinates);
+  console.log(response);
 }
 
 function searchLocation(position) {
