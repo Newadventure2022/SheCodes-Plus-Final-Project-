@@ -38,14 +38,13 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index > 0) {
       forecastHTML =
         forecastHTML +
         ` 
@@ -92,6 +91,8 @@ function displayWeatherCondition(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
+  celsiusTemperature = response.data.temperature.current;
+
   currentLocation.innerHTML = `${response.data.city}`;
   currentTemp.innerHTML = `${temperature}`;
   weatherElement.innerHTML = response.data.condition.description;
@@ -104,7 +105,6 @@ function displayWeatherCondition(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.description);
   getForecast(response.data.coordinates);
-  console.log(response);
 }
 
 function searchLocation(position) {
@@ -195,6 +195,10 @@ fahrenheitLink.addEventListener("click", fahrenheitTemp);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", celsiusTemp);
+
+let dateElement = document.querySelector("#date");
+let currentTime = new Date();
+dateElement.innerHTML = formatDate(currentTime);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleCity);
