@@ -203,4 +203,4 @@ dateElement.innerHTML = formatDate(currentTime);
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleCity);
 
-search("Paris");
+search("Valencia");
