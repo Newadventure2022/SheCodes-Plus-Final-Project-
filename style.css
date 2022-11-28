@@ -282,3 +282,18 @@ span.elements {
     width: 16rem;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  .header-border h2 {
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 15px;
+    padding-top: 20px;
+  }
+  input[type="search"] {
+    width: 100%;
+  }
+  .current-location-button {
+    margin-bottom: 15px;
+  }
+}
