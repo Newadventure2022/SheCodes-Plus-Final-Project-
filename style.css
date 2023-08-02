@@ -54,6 +54,13 @@ footer {
   clear: both;
   position: relative;
   margin-top: 100px;
+  transition: all 100ms ease-in-out;
+}
+.my-name {
+  color: #fff;
+}
+.my-name:hover {
+  color: #20002c;
 }
 
 .container {
@@ -197,7 +204,6 @@ input[type="submit"]:hover {
   padding-right: 24px;
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.2);
-
   color: #fff;
   font-size: 14px;
   margin-left: 8px;
@@ -275,10 +281,6 @@ span.elements {
   color: white;
   border-radius: 8px;
   border: solid 1px rgba(255, 255, 255, 0.5);
-}
-.my-name {
-  color: #000;
-  opacity: 0.5;
 }
 
 @media only screen and (max-width: 600px) {
